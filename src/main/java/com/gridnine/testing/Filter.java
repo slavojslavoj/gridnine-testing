@@ -25,7 +25,9 @@ public class Filter {
             long sumTransferTime = 0;
 
             for (int i = 0; i < segments.size() - 1; ++i) {
-                sumTransferTime = Duration.between(segments.get(i).getArrivalDate(), segments.get(i + 1).getDepartureDate()).toHours();
+                LocalDateTime arrivalTime = segments.get(i).getArrivalDate();
+                LocalDateTime departureTime = segments.get(i + 1).getDepartureDate();
+                sumTransferTime = Duration.between(arrivalTime, departureTime).toHours();
             }
 
             return sumTransferTime >= 2;
